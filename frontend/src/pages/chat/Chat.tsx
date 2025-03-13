@@ -744,7 +744,7 @@ const Chat = () => {
       }
       // const execResults = JSON.parse(message.content) as AzureSqlServerExecResults;
       // return execResults.all_exec_results.at(-1)?.code_exec_result;
-  };
+  
     }
     return null;
   }
@@ -763,7 +763,7 @@ const Chat = () => {
     if (question && !isLoading) {
       makeApiRequestWithoutCosmosDB(question);
     }
-  };
+  }
 
   return (
     <div className={styles.container} role="main">

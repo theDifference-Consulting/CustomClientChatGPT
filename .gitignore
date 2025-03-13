@@ -1,8 +1,12 @@
-backend/.DS_Store
-frontend/.DS_Store
-frontend/src/.DS_Store
-frontend/src/components/.DS_Store
-frontend/src/pages/.DS_Store
-tests/.DS_Store
+.venv
+frontend/node_modules
+.env
+# static
+.azure/
+__pycache__/
+.ipynb_checkpoints/
+/.github/workflows
 .github/.DS_Store
 .DS_Store
+.github/workflows/.DS_Store
+app.updated.bak

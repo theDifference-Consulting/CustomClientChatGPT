@@ -3,9 +3,8 @@ name: Docker Image Publish
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:
-  
+    - main
+
 jobs:
 
   build:
@@ -13,17 +12,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
     - name: Azure Container Registry Login
-      run: |
-        echo ${{ secrets.ACR_PASSWORD }} | docker login -u github --password-stdin clientgpt.azurecr.io
-
+      uses: Azure/docker-login@v2
+      with:
+        # Container registry username
+        username: ${{ secrets.SAMPLEAPP_ACR_USERNAME }}
+        # Container registry password
+        password: ${{ secrets.SAMPLEAPP_ACR_PASSWORD }}
+        # Container registry server url
+        login-server: sampleappaoaichatgpt.azurecr.io
+        
     - uses: actions/checkout@v3
-
-    - name: Build and Push Docker image
-      run: |
-        set -e
-        docker build . --file WebApp.Dockerfile --tag clientgpt.azurecr.io/internalclientgpt:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
-        docker tag clientgpt.azurecr.io/internalclientgpt:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER clientgpt.azurecr.io/internalclientgpt:latest;
-        docker push clientgpt.azurecr.io/internalclientgpt:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
-        docker push clientgpt.azurecr.io/internalclientgpt:latest;
+    - name: Build the Docker image
+      run:         
+        docker build . --file WebApp.Dockerfile --tag sampleappaoaichatgpt.azurecr.io/sample-app-aoai-chatgpt:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
+        docker tag sampleappaoaichatgpt.azurecr.io/sample-app-aoai-chatgpt:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER sampleappaoaichatgpt.azurecr.io/sample-app-aoai-chatgpt:latest;
+        docker push sampleappaoaichatgpt.azurecr.io/sample-app-aoai-chatgpt:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
+        docker push sampleappaoaichatgpt.azurecr.io/sample-app-aoai-chatgpt:latest;
+      

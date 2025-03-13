@@ -95,10 +95,10 @@ const Layout = () => {
         </Stack>
       </header>
 
-
+      {/* The main content of the page */}
       <Outlet />
 
-
+      {/* DISCLAIMER FOOTER (Add your desired text here) */}
       <footer className={styles.disclaimerFooter}>
         <p>
           Created and maintained by{' '}

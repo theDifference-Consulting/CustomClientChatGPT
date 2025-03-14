@@ -22,7 +22,7 @@ jobs:
 
     - name: Build and push container image to registry
       run: |
-        docker build . --file Dockerfile --tag clientgpt.azurecr.io/internalclientgpt:${{ github.sha }}
+        docker build . --file Webapp.Dockerfile --tag clientgpt.azurecr.io/internalclientgpt:${{ github.sha }}
         docker tag clientgpt.azurecr.io/internalclientgpt:${{ github.sha }} clientgpt.azurecr.io/internalclientgpt:latest
         docker push clientgpt.azurecr.io/internalclientgpt:${{ github.sha }}
         docker push clientgpt.azurecr.io/internalclientgpt:latest

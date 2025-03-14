@@ -108,7 +108,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (!appStateContext?.state.isLoading) {
-      setLogo(ui?.chat_logo || ui?.logo || '')
+      setLogo(ui?.chat_logo || ui?.logo || Contoso)
     }
   }, [appStateContext?.state.isLoading])
 
@@ -744,7 +744,6 @@ const Chat = () => {
       }
       // const execResults = JSON.parse(message.content) as AzureSqlServerExecResults;
       // return execResults.all_exec_results.at(-1)?.code_exec_result;
-  
     }
     return null;
   }
@@ -756,13 +755,6 @@ const Chat = () => {
       clearingChat ||
       appStateContext?.state.chatHistoryLoadingState === ChatHistoryLoadingState.Loading
     )
-  }
-
-  const handleQuestionClick = (question: string) => {
-    // This function will simulate the user typing the question
-    if (question && !isLoading) {
-      makeApiRequestWithoutCosmosDB(question);
-    }
   }
 
   return (
@@ -798,15 +790,11 @@ const Chat = () => {
         <Stack horizontal className={styles.chatRoot}>
           <div className={styles.chatContainer}>
             {!messages || messages.length < 1 ? (
-              <>
-                <Stack className={styles.chatEmptyState}>
-                  <img src={logo} className={styles.chatIcon} aria-hidden="true" />
-                  <h1 className={styles.chatEmptyStateTitle}>{ui?.chat_title}</h1>
-                  <h2 className={styles.chatEmptyStateSubtitle}>{ui?.chat_description}</h2>
-                </Stack>
-                {/* Pass the handler to MiddleSection */}
-                <MiddleSection onQuestionClick={handleQuestionClick} />
-              </>
+              <Stack className={styles.chatEmptyState}>
+                <img src={logo} className={styles.chatIcon} aria-hidden="true" />
+                <h1 className={styles.chatEmptyStateTitle}>{ui?.chat_title}</h1>
+                <h2 className={styles.chatEmptyStateSubtitle}>{ui?.chat_description}</h2>
+              </Stack>
             ) : (
               <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? '40px' : '0px' }} role="log">
                 {messages.map((answer, index) => (

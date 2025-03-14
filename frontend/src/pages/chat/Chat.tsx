@@ -14,6 +14,7 @@ import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import styles from './Chat.module.css'
 import Contoso from '../../assets/Contoso.svg'
 import { XSSAllowTags } from '../../constants/sanatizeAllowables'
+import MiddleSection from './MiddleSection';
 
 import {
   ChatMessage,
@@ -763,7 +764,7 @@ const Chat = () => {
       makeApiRequestWithoutCosmosDB(question);
     }
   }
-  
+
   return (
     <div className={styles.container} role="main">
       {showAuthMessage ? (

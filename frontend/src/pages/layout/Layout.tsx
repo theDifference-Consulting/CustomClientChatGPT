@@ -95,6 +95,14 @@ const Layout = () => {
         </Stack>
       </header>
       <Outlet />
+      <footer className={styles.disclaimerFooter}>
+        <p>
+          Created and maintained by{' '}
+          <a href="https://thedifferenceconsulting.com" target="_blank" rel="noopener noreferrer">
+            theDifference
+          </a>
+        </p>
+      </footer>
       <Dialog
         onDismiss={handleSharePanelDismiss}
         hidden={!isSharePanelOpen}

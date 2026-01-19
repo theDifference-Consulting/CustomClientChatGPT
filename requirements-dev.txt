@@ -14,3 +14,4 @@ azure-storage-blob
 chardet
 azure-keyvault-secrets
 coverage
+azure-core>=1.38.0 # not directly required, pinned by Snyk to avoid a vulnerability
